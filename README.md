@@ -1,1 +1,3 @@
 # D3js Chart
+
+Se trata de una creacion de graficos utilizando JavaScript y mas concretamente una de sus librerias (D3js), esto es una herramienta muy potente para crear graficos de datos profesionales y en el repositorio he creado 3 ejemplos tipicos relacionados entre si para comprobar el poder de D3 y con un sistema de filtrado. El sistema de filtrado se puede mejorar pues aunque filtra correctamente tiene algunas pegas como no filtrar los propios filtros o ciertos herrores en el filtrado del grafico links.
