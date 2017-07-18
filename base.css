@@ -1,0 +1,137 @@
+     #svg1{
+            position: left;
+            float: left;
+            width:30%;
+            height:25rem;
+            margin-top:10px;
+            margin-left:10px;
+            margin-right:10px;
+        }
+        #svg2{
+            position:relative;
+            width:60%;
+            height:40em;
+            margin-top:10px;
+            margin-left:10px;
+            margin-right:10px;
+        }
+
+        select{
+            width:130px;
+            height:30px;
+            display:inline-block;
+            color:SteelBlue;
+            margin-left:10px;
+            margin-right: 10px;
+        }
+        h1{
+            text-align:center;
+            font-family: century;
+        }
+<!--        .d3-tip {
+              line-height: 1;
+              padding: 12px;
+              background: rgba(0, 0, 0, 0.8);
+              color: #fff;
+              border-radius: 2px;
+              font-family: century;
+              font-size: 12px;
+              text-align: center;
+        }
+
+        /* Creates a small triangle extender for the tooltip */
+        .d3-tip:after {
+              box-sizing: border-box;
+              display: block;
+              font-size: 10px;
+              width: 100%;
+              line-height: 1;
+              color: rgba(0, 0, 0, 0.8);
+              content: "\25BC";
+              position: absolute;
+              text-align: center;
+        }
+        .d3-tip.n:after {
+              margin: -1px 0 0 0;
+              top: 100%;
+              left: 0;
+        }-->
+
+        .d3-tip {
+            line-height: 1;
+            font: 12px sans-serif;
+            font-family: 'Century Gothic','Arial';
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+            border-radius: 1px;
+            pointer-events: none;
+            border: 1px solid;
+            border-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .d3-tip-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+            margin-left: 20px;
+            position: relative;
+            display: block;
+        }
+
+        /* Creates a small triangle extender for the tooltip */
+        .d3-tip:after {
+            box-sizing: border-box;
+            display: inline;
+            font-size: 10px;
+            width: 100%;
+            line-height: 1;
+            color: rgba(0, 0, 0, 0.8);
+            position: absolute;
+            pointer-events: none;
+        }
+
+        /* Northward tooltips */
+        .d3-tip.n:after {
+            content: "\25BC";
+            margin: -1px 0 0 0;
+            top: 100%;
+            left: 0;
+            text-align: center;
+        }
+
+        /* Eastward tooltips */
+        .d3-tip.e:after {
+            content: "\25C0";
+            margin: -4px 0 0 0;
+            top: 50%;
+            left: -8px;
+        }
+
+        /* Southward tooltips */
+        .d3-tip.s:after {
+            content: "\25B2";
+            margin: 0 0 1px 0;
+            top: -9px;
+            left: 0;
+            text-align: center;
+        }
+
+        /* Westward tooltips */
+        .d3-tip.w:after {
+            content: "\25B6";
+            margin: -4px 0 0 -1px;
+            top: 50%;
+            left: 100%;
+        }
+        .d3-tip ul {
+            margin-top: 0px;
+            margin-bottom: 0px;
+            padding-left: 20px;
+            font: 12px sans-serif;
+            font-family: 'Century Gothic','Arial';
+        }
+
+        .d3-tip .content.value {
+            float: right;
+            margin-left: 6px;
+        }

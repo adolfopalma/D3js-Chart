@@ -1,0 +1,169 @@
+
+[
+  {
+    "NodeName":"Amsterdam",
+    "X": "90",
+    "Y": "20",
+    "Filter_1":"Netherlands",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"11500"
+  },
+
+  {
+    "NodeName":"Granada",
+    "X": "90",
+    "Y": "40",
+    "Filter_1":"Spain",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"8500"
+  },
+
+  {
+    "NodeName":"Delft",
+    "X": "90",
+    "Y": "60",
+    "Filter_1":"Netherlands",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"14500"
+  },
+
+  {
+    "NodeName":"Rotterdam",
+    "X": "110",
+    "Y": "80",
+    "Filter_1":"Netherlands",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"10500"
+  },
+
+  {
+    "NodeName":"Barcelona",
+    "X": "130",
+    "Y": "120",
+    "Filter_1":"Spain",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"20500"
+  },
+
+  {
+    "NodeName":"Dagobah",
+    "X": "130",
+    "Y": "140",
+    "Filter_1":"Unknown",
+    "Filter_2":"Unknown",
+    "Filter_3":"Dagobah",
+    "Filter_4":"Dagobah System",
+    "KPI_1":"500"
+  },
+
+  {
+    "NodeName":"Nova Corps city",
+    "X": "110",
+    "Y": "160",
+    "Filter_1":"Unknown",
+    "Filter_2":"Unknown",
+    "Filter_3":"Xandar",
+    "Filter_4":"Andromeda System",
+    "KPI_1":"30500"
+  },
+
+  {
+    "NodeName":"Paris",
+    "X": "130",
+    "Y": "100",
+    "Filter_1":"France",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"16500"
+  },
+
+  {
+    "NodeName":"Ego City",
+    "X": "90",
+    "Y": "180",
+    "Filter_1":"Country Ego",
+    "Filter_2":"Unknown",
+    "Filter_3":"Ego",
+    "Filter_4":"Andromeda System",
+    "KPI_1":"2"
+  },
+
+  {
+    "NodeName":"Pekin",
+    "X": "150",
+    "Y": "80",
+    "Filter_1":"China",
+    "Filter_2":"Asia",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"28000"
+  },
+
+  {
+    "NodeName":"Abu Dabi",
+    "X": "170",
+    "Y": "60",
+    "Filter_1":"Saudi Arabia",
+    "Filter_2":"Asia",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"28000"
+  },
+
+  {
+    "NodeName":"Tokyo",
+    "X": "190",
+    "Y": "40",
+    "Filter_1":"Japan",
+    "Filter_2":"Asia",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"25000"
+  },
+
+  {
+    "NodeName":"Madrid",
+    "X": "150",
+    "Y": "120",
+    "Filter_1":"Spain",
+    "Filter_2":"Europe",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"11000"
+  },
+
+  {
+    "NodeName":"New York",
+    "X": "170",
+    "Y": "140",
+    "Filter_1":"Usa",
+    "Filter_2":"America",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"14000"
+  },
+
+  {
+    "NodeName":"Los Angeles",
+    "X": "150",
+    "Y": "160",
+    "Filter_1":"Usa",
+    "Filter_2":"America",
+    "Filter_3":"Earth",
+    "Filter_4":"Solar System",
+    "KPI_1":"17000"
+  }
+
+
+]

@@ -1,0 +1,111 @@
+
+[
+  {
+    "LinkName":"Link 1",
+    "Begin":"Amsterdam",
+    "End":"Granada",
+    "KPI_1":"4000"
+  },
+
+  {
+    "LinkName":"Link 2",
+    "Begin":"Rotterdam",
+    "End":"Delft",
+    "KPI_1":"2000"
+  },
+
+  {
+    "LinkName":"Link 3",
+    "Begin":"Delft",
+    "End":"Rotterdam",
+    "KPI_1":"3000"
+  },
+
+  {
+    "LinkName":"Link 4",
+    "Begin":"Rotterdam",
+    "End":"Paris",
+    "KPI_1":"5000"
+  },
+
+  {
+    "LinkName":"Link 5",
+    "Begin":"Paris",
+    "End":"Barcelona",
+    "KPI_1":"7000"
+  },
+
+  {
+    "LinkName":"Link 6",
+    "Begin":"Barcelona",
+    "End":"Dagobah",
+    "KPI_1":"3560"
+  },
+
+  {
+    "LinkName":"Link 7",
+    "Begin":"Granada",
+    "End":"Delft",
+    "KPI_1":"3880"
+  },
+
+  {
+    "LinkName":"Link 8",
+    "Begin":"Dagobah",
+    "End":"Nova Corps city",
+    "KPI_1":"7560"
+  },
+
+  {
+    "LinkName":"Link 9",
+    "Begin":"Nova Corps city",
+    "End":"Ego City",
+    "KPI_1":"7330"
+  },
+
+  {
+    "LinkName":"Link 10",
+    "Begin":"Paris",
+    "End":"Madrid",
+    "KPI_1":"8560"
+  },
+
+  {
+    "LinkName":"Link 11",
+    "Begin":"Madrid",
+    "End":"New York",
+    "KPI_1":"11560"
+  },
+
+  {
+    "LinkName":"Link 12",
+    "Begin":"Dagobah",
+    "End":"Los Angeles",
+    "KPI_1":"1560"
+  },
+
+  {
+    "LinkName":"Link 13",
+    "Begin":"Paris",
+    "End":"Pekin",
+    "KPI_1":"2560"
+  },
+
+  {
+    "LinkName":"Link 14",
+    "Begin":"Pekin",
+    "End":"Abu Dabi",
+    "KPI_1":"6560"
+  },
+
+  {
+    "LinkName":"Link 15",
+    "Begin":"Abu Dabi",
+    "End":"Tokyo",
+    "KPI_1":"2560"
+  }
+
+
+
+
+]
