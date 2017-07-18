@@ -9,7 +9,22 @@ var circles;
 var text2;
 var tip;
 var line;
-var svg;
+var link;
+var newData1;
+var textLinkBegin;
+var textLinkEnd;
+var textTitle;
+
+
+////////////   If you want exclude any filter, change the attribute false to true.   \\\\\\\\\\\\\\\\\\\
+
+var excludeFilters = {
+    'Filter_1': false,                                                                               
+    'Filter_2': false,                                                                                   
+    'Filter_3': false, 
+    'Filter_4': false 
+}
+
 
 
 //////////////   Carga de los archivos Json en arrays   \\\\\\\\\\\\\\\\\
@@ -71,72 +86,97 @@ function compareY(name){
         return "Beging: "+d.Begin + '<br>' + "End: " + d.End + '<br>' + "Traffic: " + d3.format(',.0f')(d.KPI_1);
      })
 
-
-//////////////   Dibujado de los graficos   \\\\\\\\\\\
-
-function click(name){
-    _.forEach(data2, function(item){
-        var result = [];
-        if(item.Begin === name){
-            result = (name + " in the "+ item.LinkName +" is following to " + item.End);
-            console.log(result)
-            links.append (result);
-        }
-    });
-}
-
-
-
-
+    tip3 = d3.tip()
+     .attr("class", "d3-tip")
+     .offset([-10, 0])
+     .html(function(d) {
+        return "Traffic: " + d3.format(',.0f')(d.KPI_1) + '<br>' + d.Filter_1;
+     })  
+     
+///////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
 function graphic(){
-    svg = d3.select("body")
-            .append("svg")
-            .attr("id","svg1")
+    
+    var svg = d3.select("body")
+        .append("svg")
+        .attr("id","svg1")
     svg.call(tip)
     svg.call(tip2)
 
+    
+    var svg3 = d3.select("body")
+        .append("svg")
+        .attr("id","svg3")
+        
+    svg3.call(tip3)
+
+    var svg2 = d3.select("body")
+            .append("svg")
+            .attr("id","svg2")
+    
+/////////////////////////////////////  Create lines  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
     line = svg.selectAll("line")
     .data(data2)
     .enter().append("line")
     .attr("id", function(d){
-        return d.LinkName;
+        return d.Begin;
     })
 
     line.attr("x1",function(d){
-        return compareX(d.Begin);
+        return compareX(d.Begin); 
     })
-
+    
     .attr("x2", function(d){
         return compareX(d.End); ;
     })
-
+    
     .attr("y1", function(d){
-        return compareY(d.Begin);
+        return compareY(d.Begin);     
     })
-
+    
     .attr("y2", function(d){
-        return compareY(d.End);
+        return compareY(d.End); 
     })
-
+    
     .attr("stroke", "#CEECF5")
     .attr("stroke-width", "2px")
-
+    
     .on("mouseover", tip2.show)
-
+    
     .on("mouseout", tip2.hide)
+
 
     .on("mouseenter", function(d){
         d3.select(this)
-        .attr("stroke-width", "3px")
+        .attr("stroke-width", "10px")
+        
+        link.attr("height", function(d2){
+            if(d.Filter_1 == d2.Filter_1){
+                return 9;
+            }else{
+                return 0;
+            }
+        })
+        .attr("fill", function(d2){
+            if(d.Begin == d2.Begin && d.End == d2.End){
+                return "orange"
+            }else{
+                return "LightSteelBlue"
+            }
+        })
     })
+    
     .on("mouseleave", function(d){
         d3.select(this)
         .attr("stroke-width", "2px")
+        link.attr("height", 9)
+        .attr("fill","LightSteelBlue")
     })
-
-
+    
+//////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\    
+    
+//////////////////////////////////////   Create Circles   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\    
 
     circles = svg.selectAll("circle")
             .data(data1)
@@ -149,12 +189,12 @@ function graphic(){
             })
             .attr("stroke", "SteelBlue")
             .attr("stroke-width", "1px")
-
+            
             .attr("id", function(d){
                 return d.NodeName;
             })
-
-            .attr("fill", function(d){
+            
+            .attr("fill", function(d){ /////////////   Here we can change de color of the circles   \\\\\\\\\\\\\\\\ 
                 if(d.KPI_1/1000 >=17){
                     return "#FF0000"
                 }else
@@ -177,14 +217,14 @@ function graphic(){
                     return "#5FB404"
                 }
             })
-            .attr("r", function(d){
-                if(d.KPI_1/10000 > 1.7){
+            .attr("r", function(d){ ///////////////   Here we can change the radius of the circles   \\\\\\\\\\\\\\\\\
+                if(d.KPI_1/1000 > 17){
                     return 8
-                }else if(d.KPI_1/10000 >= 1.6 ){
+                }else if(d.KPI_1/10000 >= 16 ){
                     return 7
-                }else if(d.KPI_1/10000 >= 1.5 ){
+                }else if(d.KPI_1/10000 >= 15 ){
                     return 6
-                }else if(d.KPI_1/10000 >= 1.4 ){
+                }else if(d.KPI_1/10000 >= 14 ){
                     return 5
                 }else{
                     return 4
@@ -194,6 +234,7 @@ function graphic(){
             .on("mouseover", function(d){
                 d3.select(this)
                 .attr("stroke-width","3px")
+                
 
                bar.attr("fill", function(d2){
                    if(d2.NodeName == d.NodeName){
@@ -219,11 +260,7 @@ function graphic(){
                     }
                })
             })
-           .on("mouseenter", tip.show)
-
-           .on("click", function(d){
-                click(d.NodeName)
-            })
+            .on("mouseenter", tip.show)
 
             .on("mouseout",function(d){
                  d3.select(this)
@@ -302,11 +339,17 @@ function graphic(){
                     d3.select(this)
                     .attr("stroke-width", "1px")
                 })
+                
 
-    var svg2 = d3.select("body")
-            .append("svg")
-            .attr("id","svg2")
+                
+//////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
 
+//////////////////////////////////////   Create Bars   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
+
+    
+
+            
+            
     bar = svg2.selectAll("rect")
             .data(data1)
             .enter().append("rect")
@@ -330,13 +373,10 @@ function graphic(){
             .attr("fill", "#A9BCF5")
 
             .on("mouseover", function(d){
-                  var xPos2 = d3.mouse(this)[0] +5;
-                  var yPos2 = d3.mouse(this)[1] -5;
+              d3.select(this)
+              .attr("fill", "#2E64FE")
 
-                  d3.select(this)
-                  .attr("fill", "#2E64FE")
-
-                  circles.attr("stroke-width", function(d2){
+                circles.attr("stroke-width", function(d2){
                     if (d2.NodeName == d.NodeName){
                         return 3;
                     }else{
@@ -385,7 +425,7 @@ function graphic(){
             .enter().append("text")
             .attr("id", function(d){
                 return d.NodeName;
-            })
+            })            
 
         text.text(function(d){
                 return d3.format(',.0f')(d.KPI_1);
@@ -437,7 +477,7 @@ function graphic(){
             .enter().append("text")
             .attr("id", function(d){
                 return d.NodeName;
-            })
+            })            
 
         text2.text(function(d){
                  return d.NodeName;
@@ -486,9 +526,148 @@ function graphic(){
             })
 
 
+//////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
+
+////////////////////////////////////   Create links charts   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
 
 
-////////////   Sistema de creacion de ComboBox y filtrado de datos parametrizado   \\\\\\\\\\\\\\\\\\
+
+        
+    link = svg3.selectAll("rect")
+        .data(data2)
+        .enter().append("rect")
+        .attr("id", function(d){
+            return d.Begin;
+    })
+    
+    link.attr("x", 120)
+        .attr("y", 0)
+        .attr("height", 9)
+        .attr("display", "block")
+        .attr("margin-top", "0.1.px")
+
+        .attr("width",0)
+        .attr("y", function(d, i){
+             return i * 21 + 30;
+        })
+        
+        .attr("fill", "LightSteelBlue")
+        .attr("stroke", "SteelBlue")
+        .attr("stroke-width", 1)
+
+
+        .on("mouseover", function(d){
+            d3.select(this)
+            .attr("stroke-width", 4)
+
+            line.attr("stroke-width", function(d2){
+                if(d.Filter_1 == d2.Filter_1){
+                    return 10
+                }
+            })
+            
+            line.attr("stroke", function(d2){
+                if(d.Begin == d2.Begin && d.End == d2.End){
+                    return "orange"
+                }else{
+                    return "#CEECF5"
+                }
+            })
+            
+            
+            textLinkBegin.attr("stroke",function(d2){
+                if(d.Begin == d2.Begin && d.End == d2.End){
+                    return "black"
+                }                
+            })
+            
+            textLinkEnd.attr("stroke",function(d2){
+                if(d.Begin == d2.Begin && d.End == d2.End){
+                    return "black"
+                }                
+            })
+        })
+        
+        .on("mouseout", function(d){
+            d3.select(this)
+            .attr("stroke-width", 2)
+            
+            line.attr("stroke-width", 2)
+                .attr("stroke", "#CEECF5")
+            textLinkBegin.attr("stroke","none")
+            textLinkEnd.attr("stroke","none") 
+        })
+        
+        .on("click", tip3.show)
+        .on("mouseleave", tip3.hide)
+        
+        .transition()
+            .delay(function(d, i){
+                return i * 100;
+            })
+            .duration(1000)
+            .attr("width", function(d){
+                return 200;
+            })
+        
+        textLinkBegin = svg3.selectAll("textLinkBegin")
+            .data(data2)
+            .enter().append("text")
+            .attr("id", function(d){
+                return d.Begin;
+            })            
+
+        textLinkBegin.text(function(d){
+                 return d.Begin;
+            })
+            .attr("x", function(d){
+                 return 40
+            })
+            .attr("y", function(d, i){
+                 return i * 21 + 37;
+            })
+            .attr("font-size","13px")
+            .style("font-family", "century gothic")
+            
+            
+        textLinkEnd = svg3.selectAll("textLinkEnd")
+            .data(data2)
+            .enter().append("text")
+            .attr("id", function(d){
+                return d.Begin;
+            })            
+
+        textLinkEnd.text(function(d){
+                 return d.End;
+            })
+            .attr("x", function(d){
+                 return 330
+            })
+            .attr("y", function(d, i){
+                 return i * 21 + 37;
+            })
+            .attr("font-size","13px")
+            .style("font-family", "century gothic")            
+        
+     
+        svg3.append("text")
+            .text("Links")
+            .attr("x", function(d){
+                 return 200
+            })
+            .attr("y", function(d, i){
+                 return 10;
+            })
+            .attr("font-size","13px")
+            .style("font-family", "century gothic")      
+
+
+
+//////////////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\   
+
+////////////////////////////////////   Create combobox   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\    
+ 
+
 
             function createSelectionBoxes(object) {
                 var filters = getFilters(object);
@@ -500,7 +679,7 @@ function graphic(){
                     createSelectionBox(filterName, form);
                 });
             }
-
+            
             createSelectionBoxes(data1[0]);
                 _.forEach(selectionBoxes, function(selectionBox) {
                     selectionBox.addEventListener('change', onSelectionChange);
@@ -510,7 +689,8 @@ function graphic(){
                 return _.chain(object)
                     .keys()
                     .filter(function(value, index) {
-                        return value.substr(0,6) === "Filter";
+                        var filterKey = value.substr(0,6)
+                        return filterKey === "Filter" && !excludeFilters[value];
                     })
                     .map(function(value, index) {
                         return value.substr(7, value.length + 1)
@@ -574,15 +754,16 @@ function graphic(){
                 });
                 _.forEach(bar[0], function(t){
                     t.style.display = "";
-                });
+                });                
                 _.forEach(text2[0], function(t){
                     t.style.display = "";
                 });
+                _.forEach(link[0], function(t){
+                    t.style.display = ""
+                })
 
                 var filterName = "Filter_" + event.currentTarget.id
                 var filterValue = event.currentTarget.value
-                console.log(filterName, filterValue);
-                console.log(filterValue);
 
                 var selectionBoxValues=[];
                 _.forEach(selectionBoxes, function(selectionBox){
@@ -595,11 +776,7 @@ function graphic(){
                     })
                 };
 
-                console.log(selectionBoxValues);
-
-
-
-                var newData1 = _.filter(data1, function(d){
+                newData1 = _.filter(data1, function(d){
                     return d[filterName] !== filterValue;
                 });
 
@@ -635,7 +812,7 @@ function graphic(){
                         })
                     }
                 });
-
+                
                 var newText2Data = _.filter(data1, function(d){
                     return d[filterName] !== filterValue;
                 });
@@ -647,6 +824,7 @@ function graphic(){
 
                     if(foundText && foundText[0]){
                         foundText[0].style.display = "none";
+                        bar[0].delete;
                     }
                     if(filterValue == "noFilter"){
                         foundText[0].style.display = "";
@@ -655,12 +833,13 @@ function graphic(){
                         })
                     }
                 });
-
+                
                 var newBarData = _.filter(data1, function(d){
                     return d[filterName] !== filterValue;
                 });
+                    
 
-                _.forEach(newTextData, function(d){
+                _.forEach(newBarData, function(d){
                     foundText = _.filter(bar[0], function(l){
                         return l.id === d['NodeName'];
                     });
@@ -675,6 +854,34 @@ function graphic(){
                         })
                     }
                 });
-            }
-}
+                
+                
+                var newLinkData = _.filter(data1, function(d){
+                    return d[filterName] !== filterValue;
+                });
+                
+                console.log(newLinkData)
+                    
 
+                _.forEach(newLinkData, function(d){
+                    foundText = _.filter(link[0], function(l){
+                        return l.id === d['NodeName'];
+                    });
+
+                    if(foundText && foundText[0]){
+                        foundText[0].style.display = "none";
+                    }
+                    if(filterValue == "noFilter"){
+                        foundText[0].style.display = "";
+                        _.forEach("select", function(d){
+                            d.selectionBox === "All";
+                        })
+                    }
+                });
+                
+            }
+                
+                
+
+
+}
